@@ -1,0 +1,38 @@
+# Go
+# Build your Go project.
+# Add steps that test, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/go
+
+trigger:
+  branches:
+    include:
+      - refs/heads/main
+      - refs/tags/*
+
+pool:
+  vmImage: 'Ubuntu 16.04'
+
+steps:
+- task: GoTool@0
+  inputs:
+    version: '1.13.10'
+  displayName: 'Install Go'
+
+- script: |
+    set -xeuo pipefail
+    mkdir -p /home/vsts/go/bin/
+    echo "##vso[task.prependpath]/home/vsts/go/bin/"
+  displayName: 'Configure Go'
+
+- script: |
+     make build test-unit
+  displayName: 'Unit Test'
+
+- script: |
+    make xbuild-all
+  displayName: 'Cross Compile'
+
+- script: |
+    AZURE_STORAGE_CONNECTION_STRING=$(AZURE_STORAGE_CONNECTION_STRING) make publish
+  displayName: 'Publish'
+  condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
