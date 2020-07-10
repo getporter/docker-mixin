@@ -4,40 +4,40 @@
     "installStep": {
       "type": "object",
       "properties": {
-        "skeletor": {"$ref": "#/definitions/skeletor"}
+        "docker": {"$ref": "#/definitions/docker"}
       },
       "required": [
-        "skeletor"
+        "docker"
       ],
       "additionalProperties": false
     },
     "upgradeStep": {
       "type": "object",
       "properties": {
-        "skeletor": {"$ref": "#/definitions/skeletor"}
+        "docker": {"$ref": "#/definitions/docker"}
       },
       "required": [
-        "skeletor"
+        "docker"
       ],
       "additionalProperties": false
     },
     "invokeStep": {
       "type": "object",
       "properties": {
-        "skeletor": {"$ref": "#/definitions/skeletor"}
+        "docker": {"$ref": "#/definitions/docker"}
       },
       "required": [
-        "skeletor"
+        "docker"
       ],
       "additionalProperties": false
     },
     "uninstallStep": {
       "type": "object",
       "properties": {
-        "skeletor": {"$ref": "#/definitions/skeletor"}
+        "docker": {"$ref": "#/definitions/docker"}
       },
       "required": [
-        "skeletor"
+        "docker"
       ],
       "additionalProperties": false
     },
@@ -74,7 +74,7 @@
         ]
       }
     },
-    "skeletor": {
+    "docker": {
       "type": "object",
       "properties": {
         "description": {

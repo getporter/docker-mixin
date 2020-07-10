@@ -1,4 +1,4 @@
-package skeletor
+package docker
 
 import (
 	"io/ioutil"

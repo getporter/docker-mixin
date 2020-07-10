@@ -1,5 +1,5 @@
 install:
-  - skeletor:
+  - docker:
       description: "Summon Minion"
       arguments:
       - "man-e-faces"

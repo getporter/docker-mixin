@@ -1,4 +1,4 @@
-package skeletor
+package docker
 
 import (
 	"get.porter.sh/porter/pkg/exec/builder"
@@ -12,7 +12,7 @@ type Action struct {
 
 // UnmarshalYAML takes any yaml in this form
 // ACTION:
-// - skeletor: ...
+// - docker: ...
 // and puts the steps into the Action.Steps field
 func (a *Action) UnmarshalYAML(unmarshal func(interface{}) error) error {
 	var steps []Steps
@@ -40,7 +40,7 @@ func (a Action) GetSteps() []builder.ExecutableStep {
 }
 
 type Steps struct {
-	Step `yaml:"skeletor"`
+	Step `yaml:"docker"`
 }
 
 var _ builder.ExecutableStep = Step{}
@@ -55,7 +55,7 @@ type Step struct {
 }
 
 func (s Step) GetCommand() string {
-	return "skeletor"
+	return "docker"
 }
 
 func (s Step) GetArguments() []string {

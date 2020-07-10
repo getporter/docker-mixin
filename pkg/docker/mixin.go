@@ -1,5 +1,5 @@
 //go:generate packr2
-package skeletor
+package docker
 
 import (
 	"get.porter.sh/porter/pkg/context"

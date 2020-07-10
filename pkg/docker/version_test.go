@@ -1,10 +1,10 @@
-package skeletor
+package docker
 
 import (
 	"strings"
 	"testing"
 
-	"get.porter.sh/mixin/skeletor/pkg"
+	"get.porter.sh/mixin/docker/pkg"
 	"get.porter.sh/porter/pkg/porter/version"
 	"get.porter.sh/porter/pkg/printer"
 	"github.com/stretchr/testify/require"
@@ -22,7 +22,7 @@ func TestPrintVersion(t *testing.T) {
 	m.PrintVersion(opts)
 
 	gotOutput := m.TestContext.GetOutput()
-	wantOutput := "skeletor v1.2.3 (abc123) by YOURNAME"
+	wantOutput := "docker v1.2.3 (abc123) by Porter Authors"
 	if !strings.Contains(gotOutput, wantOutput) {
 		t.Fatalf("invalid output:\nWANT:\t%q\nGOT:\t%q\n", wantOutput, gotOutput)
 	}
@@ -42,10 +42,10 @@ func TestPrintJsonVersion(t *testing.T) {
 
 	gotOutput := m.TestContext.GetOutput()
 	wantOutput := `{
-  "name": "skeletor",
+  "name": "docker",
   "version": "v1.2.3",
   "commit": "abc123",
-  "author": "YOURNAME"
+  "author": "Porter Authors"
 }
 `
 	if !strings.Contains(gotOutput, wantOutput) {

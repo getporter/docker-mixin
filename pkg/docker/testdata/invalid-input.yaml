@@ -1,5 +1,5 @@
 install:
-  - skeletor:
+  - docker:
       description: "Invalid Input Test Case"
       args:
       - yarrrr

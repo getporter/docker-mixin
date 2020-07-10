@@ -1,4 +1,4 @@
-package skeletor
+package docker
 
 import (
 	"bytes"
@@ -25,7 +25,7 @@ func TestMixin_Execute(t *testing.T) {
 		wantCommand string // Full command that you expect to be called based on the input YAML
 	}{
 		{"action", "testdata/step-input.yaml", "VICTORY",
-			"skeletor man-e-faces --species human"},
+			"docker man-e-faces --species human"},
 	}
 
 	defer os.Unsetenv(test.ExpectedCommandEnv)
