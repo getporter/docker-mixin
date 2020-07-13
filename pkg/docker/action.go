@@ -2,6 +2,8 @@ package docker
 
 import (
 	"get.porter.sh/porter/pkg/exec/builder"
+	"github.com/pkg/errors"
+	"gopkg.in/yaml.v2"
 )
 
 var _ builder.ExecutableAction = Action{}
@@ -48,8 +50,54 @@ var _ builder.ExecutableStep = DockerStep{}
 //var _ builder.StepWithOutputs = DockerStep{}
 
 type DockerStep struct {
-	Description string      `yaml:"description"`
-	Command     PullCommand `yaml:"pull"` // TODO: (carolyn) make generic yaml unmarshalling
+	Description string
+	Command     DockerCommand
+}
+
+// UnmarshalYAML takes any yaml in this form
+// docker:
+//   description: something
+//   COMMAND: # pull/build/run/... -> make the PullCommand/BuildCommand/RunCommand for us
+func (s *DockerStep) UnmarshalYAML(unmarshal func(interface{}) error) error {
+	// Turn the yaml into a raw map so we can iterate over the values and
+	// look for which command was used
+	stepMap := map[string]map[string]interface{}{}
+	err := unmarshal(&stepMap)
+	if err != nil {
+		return errors.Wrap(err, "could not unmarshal yaml into a raw docker command")
+	}
+
+	// get at the values defined under "docker"
+	dockerStep := stepMap["docker"]
+
+	// Turn each command into its typed data structure
+	for key, value := range dockerStep {
+		var cmd DockerCommand
+
+		switch key {
+		case "description":
+			s.Description = value.(string)
+			continue
+		case "pull":
+			cmd = &PullCommand{}
+		default:
+			return errors.Errorf("unsupported docker mixin command %s", key)
+		}
+
+		b, err := yaml.Marshal(value)
+		if err != nil {
+			return err
+		}
+
+		err = yaml.Unmarshal(b, cmd)
+		if err != nil {
+			return err
+		}
+
+		s.Command = cmd
+	}
+
+	return nil
 }
 
 type DockerCommand interface {

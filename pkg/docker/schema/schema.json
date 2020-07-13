@@ -80,20 +80,35 @@
         "description": {
           "$ref": "#/definitions/stepDescription"
         },
-        "arguments": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "flags": {
+        "pull": {
           "type": "object",
-          "additionalProperties": {
-            "type": ["null","boolean","number","string"]
-          }
-        },
-        "outputs": {
-          "$ref": "#/definitions/outputs"
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "tag": {
+              "type": "string"
+            },
+            "digest": {
+              "type": "string"
+            },
+            "arguments": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "flags": {
+              "type": "object",
+              "additionalProperties": {
+                "type": ["null","boolean","number","string"]
+              }
+            },
+            "outputs": {
+              "$ref": "#/definitions/outputs"
+            }
+          },
+          "additionalProperties": false
         }
       },
       "additionalProperties": false,

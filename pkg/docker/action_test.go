@@ -10,7 +10,7 @@ import (
 )
 
 func TestMixin_UnmarshalStep(t *testing.T) {
-	b, err := ioutil.ReadFile("testdata/step-input.yaml")
+	b, err := ioutil.ReadFile("testdata/pull-input.yaml")
 	require.NoError(t, err)
 
 	var action Action
