@@ -1,10 +1,6 @@
 install:
   - docker:
-      description: "Summon Minion"
-      arguments:
-      - "man-e-faces"
-      flags:
-        species: "human"
-      outputs:
-        - name: "VICTORY"
-          jsonPath: "$Id"
+      description: Prefetch the things
+      pull:
+        name: getporter/porter-hello
+        tag: v0.1.0

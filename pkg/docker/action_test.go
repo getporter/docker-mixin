@@ -4,8 +4,6 @@ import (
 	"io/ioutil"
 	"testing"
 
-	"get.porter.sh/porter/pkg/exec/builder"
-
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	yaml "gopkg.in/yaml.v2"
@@ -21,13 +19,19 @@ func TestMixin_UnmarshalStep(t *testing.T) {
 	require.Len(t, action.Steps, 1)
 
 	step := action.Steps[0]
-	assert.Equal(t, "Summon Minion", step.Description)
-	assert.NotEmpty(t, step.Outputs)
-	assert.Equal(t, Output{Name: "VICTORY", JsonPath: "$Id"}, step.Outputs[0])
+	assert.Equal(t, "Prefetch the things", step.Description)
 
-	require.Len(t, step.Arguments, 1)
-	assert.Equal(t, "man-e-faces", step.Arguments[0])
+	/*
+		assert.NotEmpty(t, step.Outputs)
+		assert.Equal(t, Output{Name: "VICTORY", JsonPath: "$Id"}, step.Outputs[0])
+	*/
 
-	require.Len(t, step.Flags, 1)
-	assert.Equal(t, builder.NewFlag("species", "human"), step.Flags[0])
+	args := step.GetArguments()
+	// docker pull getporter/porter-hello:v0.1.0
+	require.Len(t, args, 2)
+	assert.Equal(t, "pull", args[0])
+	assert.Equal(t, "getporter/porter-hello:v0.1.0", args[1])
+
+	flags := step.GetFlags()
+	assert.Empty(t, flags)
 }

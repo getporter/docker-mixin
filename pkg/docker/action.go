@@ -40,7 +40,32 @@ func (a Action) GetSteps() []builder.ExecutableStep {
 }
 
 type Steps struct {
-	Step `yaml:"docker"`
+	DockerStep `yaml:"docker"`
+}
+
+var _ builder.ExecutableStep = DockerStep{}
+
+//var _ builder.StepWithOutputs = DockerStep{}
+
+type DockerStep struct {
+	Description string      `yaml:"description"`
+	Command     PullCommand `yaml:"pull"` // TODO: (carolyn) make generic yaml unmarshalling
+}
+
+type DockerCommand interface {
+	builder.ExecutableStep
+}
+
+func (s DockerStep) GetCommand() string {
+	return "docker"
+}
+
+func (s DockerStep) GetArguments() []string {
+	return s.Command.GetArguments()
+}
+
+func (s DockerStep) GetFlags() builder.Flags {
+	return s.Command.GetFlags()
 }
 
 var _ builder.ExecutableStep = Step{}

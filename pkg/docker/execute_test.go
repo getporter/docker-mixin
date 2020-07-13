@@ -24,8 +24,8 @@ func TestMixin_Execute(t *testing.T) {
 		wantOutput  string // Name of output that you expect to be created
 		wantCommand string // Full command that you expect to be called based on the input YAML
 	}{
-		{"action", "testdata/step-input.yaml", "VICTORY",
-			"docker man-e-faces --species human"},
+		{"action", "testdata/step-input.yaml", "",
+			"docker pull getporter/porter-hello:v0.1.0"},
 	}
 
 	defer os.Unsetenv(test.ExpectedCommandEnv)
