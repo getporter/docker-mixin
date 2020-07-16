@@ -61,7 +61,7 @@ var _ builder.HasOrderedArguments = DockerStep{}
 
 type DockerStep struct {
 	Description string
-	Command     DockerCommand
+	     DockerCommand
 }
 
 
@@ -115,7 +115,7 @@ func (s *DockerStep) UnmarshalYAML(unmarshal func(interface{}) error) error {
 			return err
 		}
 
-		s.Command = cmd
+		s.DockerCommand = cmd
 	}
 
 	return nil
@@ -124,22 +124,6 @@ func (s *DockerStep) UnmarshalYAML(unmarshal func(interface{}) error) error {
 type DockerCommand interface {
 	builder.ExecutableStep
 	builder.HasOrderedArguments
-}
-
-func (s DockerStep) GetCommand() string {
-	return "docker"
-}
-
-func (s DockerStep) GetArguments() []string {
-	return s.Command.GetArguments()
-}
-
-func (s DockerStep) GetSuffixArguments() []string {
-	return s.Command.GetSuffixArguments()
-}
-
-func (s DockerStep) GetFlags() builder.Flags {
-	return s.Command.GetFlags()
 }
 
 var _ builder.ExecutableStep = Step{}
