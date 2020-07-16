@@ -1,0 +1,6 @@
+install:
+  - docker:
+      description: Login to docker
+      login:
+        username: gmadhok
+        password: password

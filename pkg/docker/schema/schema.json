@@ -109,6 +109,135 @@
             }
           },
           "additionalProperties": false
+        },
+        "push": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "tag": {
+              "type": "string"
+            },
+            "arguments": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "flags": {
+              "type": "object",
+              "additionalProperties": {
+                "type": ["null","boolean","number","string"]
+              }
+            },
+            "outputs": {
+              "$ref": "#/definitions/outputs"
+            }
+          },
+          "additionalProperties": false
+        },
+        "run": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "image": {
+              "type": "string"
+            },
+            "detach": {
+              "type": "boolean"
+            },
+            "ports": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            },
+            "env": {
+              "type": "object"
+            },
+            "privileged": {
+              "type": "boolean"
+            },
+            "rm": {
+              "type": "boolean"
+            },
+            "arguments": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "flags": {
+              "type": "object",
+              "additionalProperties": {
+                "type": ["null","boolean","number","string"]
+              }
+            },
+            "outputs": {
+              "$ref": "#/definitions/outputs"
+            }
+          },
+          "additionalProperties": false
+        },
+        "remove": {
+          "type": "object",
+          "properties": {
+            "container": {
+              "type": "string"
+            },
+            "force": {
+              "type": "boolean"
+            },
+            "arguments": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "flags": {
+              "type": "object",
+              "additionalProperties": {
+                "type": ["null","boolean","number","string"]
+              }
+            },
+            "outputs": {
+              "$ref": "#/definitions/outputs"
+            }
+          },
+          "additionalProperties": false
+        },
+        "build": {
+          "type": "object",
+          "properties": {
+            "tag": {
+              "type": "string"
+            },
+            "file": {
+              "type": "string"
+            },
+            "path": {
+              "type": "string"
+            },
+            "arguments": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "flags": {
+              "type": "object",
+              "additionalProperties": {
+                "type": ["null","boolean","number","string"]
+              }
+            },
+            "outputs": {
+              "$ref": "#/definitions/outputs"
+            }
+          },
+          "additionalProperties": false
         }
       },
       "additionalProperties": false,

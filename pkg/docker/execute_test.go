@@ -26,6 +26,16 @@ func TestMixin_Execute(t *testing.T) {
 	}{
 		{"pull", "testdata/pull-input.yaml", "",
 			"docker pull getporter/porter-hello:v0.1.0"},
+			{"push", "testdata/push-input.yaml", "",
+			"docker push getporter/porter-hello:v0.1.0"},
+		//{"login", "testdata/login-input.yaml", "",
+		//	"docker login -u gmadhok -p password"},
+		{"run", "testdata/run-input.yaml", "",
+			"docker run -d --env cookies=soup --env password=password --name practice --privileged --rm getporter/porter-hello"},
+		{"remove", "testdata/remove-input.yaml", "",
+			"docker rm practice"},
+		{"build", "testdata/build-input.yaml", "",
+			"docker build -f myfile -t practice /Users/myuser/Documents"},
 	}
 
 	defer os.Unsetenv(test.ExpectedCommandEnv)

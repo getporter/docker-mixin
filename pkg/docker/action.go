@@ -7,8 +7,10 @@ import (
 )
 
 var _ builder.ExecutableAction = Action{}
+var _ builder.BuildableAction = Action{}
 
 type Action struct {
+	Name string
 	Steps []Steps // using UnmarshalYAML so that we don't need a custom type per action
 }
 
@@ -17,18 +19,25 @@ type Action struct {
 // - docker: ...
 // and puts the steps into the Action.Steps field
 func (a *Action) UnmarshalYAML(unmarshal func(interface{}) error) error {
-	var steps []Steps
-	results, err := builder.UnmarshalAction(unmarshal, &steps)
+	results, err := builder.UnmarshalAction(unmarshal, a)
 	if err != nil {
 		return err
 	}
 
-	// Go doesn't have generics, nothing to see here...
-	for _, result := range results {
-		step := result.(*[]Steps)
-		a.Steps = append(a.Steps, *step...)
+	for actionName, action := range results {
+		a.Name = actionName
+		for _, result := range action {
+			step := result.(*[]Steps)
+			a.Steps = append(a.Steps, *step...)
+		}
+		break // There is only 1 action
 	}
 	return nil
+}
+
+// MakeSteps builds a slice of Steps for data to be unmarshaled into.
+func (a Action) MakeSteps() interface{} {
+	return &[]Steps{}
 }
 
 func (a Action) GetSteps() []builder.ExecutableStep {
@@ -46,6 +55,7 @@ type Steps struct {
 }
 
 var _ builder.ExecutableStep = DockerStep{}
+var _ builder.HasOrderedArguments = DockerStep{}
 
 //var _ builder.StepWithOutputs = DockerStep{}
 
@@ -53,6 +63,7 @@ type DockerStep struct {
 	Description string
 	Command     DockerCommand
 }
+
 
 // UnmarshalYAML takes any yaml in this form
 // docker:
@@ -78,8 +89,18 @@ func (s *DockerStep) UnmarshalYAML(unmarshal func(interface{}) error) error {
 		case "description":
 			s.Description = value.(string)
 			continue
+		case "build":
+			cmd = &BuildCommand{}
 		case "pull":
 			cmd = &PullCommand{}
+		case "push":
+			cmd = &PushCommand{}
+		//case "login":
+		//	cmd = &LoginCommand{}
+		case "run":
+			cmd = &RunCommand{}
+		case "remove":
+			cmd = &RemoveCommand{}
 		default:
 			return errors.Errorf("unsupported docker mixin command %s", key)
 		}
@@ -102,6 +123,7 @@ func (s *DockerStep) UnmarshalYAML(unmarshal func(interface{}) error) error {
 
 type DockerCommand interface {
 	builder.ExecutableStep
+	builder.HasOrderedArguments
 }
 
 func (s DockerStep) GetCommand() string {
@@ -110,6 +132,10 @@ func (s DockerStep) GetCommand() string {
 
 func (s DockerStep) GetArguments() []string {
 	return s.Command.GetArguments()
+}
+
+func (s DockerStep) GetSuffixArguments() []string {
+	return s.Command.GetSuffixArguments()
 }
 
 func (s DockerStep) GetFlags() builder.Flags {
@@ -134,6 +160,11 @@ func (s Step) GetCommand() string {
 func (s Step) GetArguments() []string {
 	return s.Arguments
 }
+
+func (s Step) GetSuffixArguments() []string {
+	return s.GetSuffixArguments()
+}
+
 
 func (s Step) GetFlags() builder.Flags {
 	return s.Flags
