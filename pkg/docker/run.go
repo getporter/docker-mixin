@@ -14,15 +14,21 @@ type RunCommand struct {
 	Env       map[string]string `yaml:"env,omitempty"`
 	Privileged     bool      `yaml:"privileged,omitempty"`
 	Rm 	    bool `yaml:"rm,omitempty"`
+	Command string `yaml:"command,omitempty"`
 	Arguments []string      `yaml:"arguments,omitempty"`
 	Flags     builder.Flags `yaml:"flags,omitempty"`
 	Outputs   []Output      `yaml:"outputs,omitempty"`
 }
 
 func (c RunCommand) GetSuffixArguments() []string {
+
 	args := []string {
 		c.Image,
 	}
+	if c.Command != "" {
+		args = append(args, c.Command)
+	}
+	args = append(args, c.Arguments...)
 	return args
 }
 
@@ -117,8 +123,6 @@ func (c RunCommand) GetArguments() []string {
 	//}
 	//
 	//
-
-	args = append(args, c.Arguments...)
 
 	return args
 }
