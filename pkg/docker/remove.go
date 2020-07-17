@@ -28,11 +28,7 @@ func (c RemoveCommand) GetArguments() []string {
 		"rm",
 		c.Container,
 	}
-	//if force != "" {
-	//	args = append(args, force, c.Container)
-	//} else {
-	//	args = append(args, c.Container)
-	//}
+
 	args = append(args, c.Arguments...)
 
 	return args

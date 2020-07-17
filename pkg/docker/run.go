@@ -37,93 +37,15 @@ type Ports struct {
 	Container string `yaml: "container"`
 }
 
-//func (p Ports) GetHost() string {
-//	return p.Host
-//}
-//
-//func (p Ports) GetContainer() string {
-//	return p.Container
-//}
-
 func (c RunCommand) GetCommand() string {
 	return "docker"
 }
 
 func (c RunCommand) GetArguments() []string {
 	// Final Command: docker run --privileged --env VAR1=value1 --env VAR2=value2 --rm -p host:container -d --name name image ARGUMENTS --FLAGS
-
-	// Arguments we need to return:
-	// push
-	// carolynvs/zombies:v1.0
-	// ARGUMENTS
-	//var priveleged_ = ""
-	//if c.Privileged {
-	//	priveleged_ = "--privileged"
-	//}
-	//var envs = ""
-	//for key, value := range c.Env {
-	//	envs = envs + "--env " + key + "=" + value
-	//	envs += " "
-	//}
-	//envs = strings.TrimSpace(envs)
-	//var ports = ""
-	//for i:=0; i < len(c.Ports); i++ {
-	//	ports = ports + "-p " + c.Ports[i].Host + ":" + c.Ports[i].Container
-	//	if i!=len(c.Ports)-1 {
-	//		ports = ports + " "
-	//	}
-	//}
-	//var detached = ""
-	//if c.Detach {
-	//	detached = "-d"
-	//}
-	//var rm = ""
-	//if c.Rm {
-	//	rm = "--rm"
-	//}
-	//var name = ""
-	//if c.Name != "" {
-	//	name += "--name "
-	//	name += c.Name
-	//}
-	//var options string
-	//if priveleged_ != "" {
-	//	options += priveleged_
-	//	options += " "
-	//}
-	//if envs != "" {
-	//	options += envs
-	//	options += " "
-	//}
-	//if rm != "" {
-	//	options += rm
-	//	options += " "
-	//}
-	//if ports != "" {
-	//	options += ports
-	//	options += " "
-	//}
-	//if detached != "" {
-	//	options += detached
-	//	options += " "
-	//}
-	//if name != "" {
-	//	options += name
-	//	options += " "
-	//}
-	//options = strings.TrimSuffix(options," ")
-
 	args := []string{
 		"run",
 	}
-	//if options == "" {
-	//	args = append(args, c.Image)
-	//} else {
-	//	args = append(args, options, c.Image)
-	//}
-	//
-	//
-
 	return args
 }
 

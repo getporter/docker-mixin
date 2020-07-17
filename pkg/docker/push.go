@@ -32,7 +32,6 @@ func (c PushCommand) GetArguments() []string {
 	// carolynvs/zombies:v1.0
 	// ARGUMENTS
 
-
 	args := []string{
 		"push",
 		fmt.Sprint(c.Name, ":", c.Tag),

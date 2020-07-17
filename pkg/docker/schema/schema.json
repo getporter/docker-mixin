@@ -146,6 +146,9 @@
             "image": {
               "type": "string"
             },
+            "command": {
+              "type": "string"
+            },
             "detach": {
               "type": "boolean"
             },

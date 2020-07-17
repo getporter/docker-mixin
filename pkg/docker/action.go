@@ -57,11 +57,9 @@ type Steps struct {
 var _ builder.ExecutableStep = DockerStep{}
 var _ builder.HasOrderedArguments = DockerStep{}
 
-//var _ builder.StepWithOutputs = DockerStep{}
-
 type DockerStep struct {
 	Description string
-	     DockerCommand
+	DockerCommand
 }
 
 
@@ -95,8 +93,8 @@ func (s *DockerStep) UnmarshalYAML(unmarshal func(interface{}) error) error {
 			cmd = &PullCommand{}
 		case "push":
 			cmd = &PushCommand{}
-		//case "login":
-		//	cmd = &LoginCommand{}
+		case "login":
+			cmd = &LoginCommand{}
 		case "run":
 			cmd = &RunCommand{}
 		case "remove":

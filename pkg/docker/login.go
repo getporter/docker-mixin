@@ -14,6 +14,10 @@ type LoginCommand struct {
 	Outputs   []Output      `yaml:"outputs,omitempty"`
 }
 
+func (c LoginCommand) GetSuffixArguments() []string {
+	return nil
+}
+
 func (c LoginCommand) GetCommand() string {
 	return "docker"
 }

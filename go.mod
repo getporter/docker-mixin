@@ -16,4 +16,4 @@ require (
 
 replace github.com/hashicorp/go-plugin => github.com/carolynvs/go-plugin v1.0.1-acceptstdin
 
-replace get.porter.sh/porter => /Users/gaurimadhok/go/src/get.porter.sh/porter
+replace get.porter.sh/porter => github.com/gaurimadhok/porter v0.26.3-beta.1.0.20200716164106-dcbb3a86e7f3

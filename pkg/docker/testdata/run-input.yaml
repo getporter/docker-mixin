@@ -7,6 +7,5 @@ install:
         detach: true
         env:
           password: password
-          cookies: soup
         privileged: true
         rm: true
