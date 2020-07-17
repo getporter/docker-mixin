@@ -33,7 +33,7 @@ func TestMixin_Execute(t *testing.T) {
 		{"run", "testdata/run-input.yaml", "",
 			"docker run -d --env password=password --name practice --privileged --rm getporter/porter-hello"},
 		{"remove", "testdata/remove-input.yaml", "",
-			"docker rm practice"},
+			"docker rm -f practice"},
 		{"build", "testdata/build-input.yaml", "",
 			"docker build -f myfile -t practice /Users/myuser/Documents"},
 	}

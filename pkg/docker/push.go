@@ -36,7 +36,6 @@ func (c PushCommand) GetArguments() []string {
 		"push",
 		fmt.Sprint(c.Name, ":", c.Tag),
 	}
-	fmt.Print(args)
 	args = append(args, c.Arguments...)
 
 	return args

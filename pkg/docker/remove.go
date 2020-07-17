@@ -15,7 +15,11 @@ type RemoveCommand struct {
 }
 
 func (c RemoveCommand) GetSuffixArguments() []string {
-	return nil
+	args := []string {
+		c.Container,
+	}
+	args = append(args, c.Arguments...)
+	return args
 }
 
 func (c RemoveCommand) GetCommand() string {
@@ -26,11 +30,7 @@ func (c RemoveCommand) GetArguments() []string {
 	// Final Command: docker rm [OPTIONS] CONTAINER ARGUMENTS --FLAGS
 	args := []string{
 		"rm",
-		c.Container,
 	}
-
-	args = append(args, c.Arguments...)
-
 	return args
 }
 

@@ -3,3 +3,4 @@ install:
       description: Remove container
       remove:
         container: practice
+        force: true
