@@ -8,9 +8,9 @@ var _ builder.ExecutableStep = BuildCommand{}
 var _ builder.HasOrderedArguments = BuildCommand{}
 
 type BuildCommand struct {
-	Tag      string        `yaml:"tag"`
-	File       string        `yaml:"file,omitempty"`
-	Path       string        `yaml:"path,omitempty"`
+	Tag       string        `yaml:"tag"`
+	File      string        `yaml:"file,omitempty"`
+	Path      string        `yaml:"path,omitempty"`
 	Arguments []string      `yaml:"arguments,omitempty"`
 	Flags     builder.Flags `yaml:"flags,omitempty"`
 	Outputs   []Output      `yaml:"outputs,omitempty"`

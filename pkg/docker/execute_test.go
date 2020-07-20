@@ -26,7 +26,7 @@ func TestMixin_Execute(t *testing.T) {
 	}{
 		{"pull", "testdata/pull-input.yaml", "",
 			"docker pull getporter/porter-hello:v0.1.0"},
-			{"push", "testdata/push-input.yaml", "",
+		{"push", "testdata/push-input.yaml", "",
 			"docker push getporter/porter-hello:v0.1.0"},
 		{"login", "testdata/login-input.yaml", "",
 			"docker login -u gmadhok -p password"},

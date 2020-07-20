@@ -7,15 +7,15 @@ import (
 var _ builder.ExecutableStep = RemoveCommand{}
 
 type RemoveCommand struct {
-	Container  string        `yaml:"container"`
-	Force      bool       `yaml:"force,omitempty"`
+	Container string        `yaml:"container"`
+	Force     bool          `yaml:"force,omitempty"`
 	Arguments []string      `yaml:"arguments,omitempty"`
 	Flags     builder.Flags `yaml:"flags,omitempty"`
 	Outputs   []Output      `yaml:"outputs,omitempty"`
 }
 
 func (c RemoveCommand) GetSuffixArguments() []string {
-	args := []string {
+	args := []string{
 		c.Container,
 	}
 	args = append(args, c.Arguments...)

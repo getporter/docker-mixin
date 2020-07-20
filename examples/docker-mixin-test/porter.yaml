@@ -32,6 +32,7 @@ install:
 - docker:
     description: "Run Whalesay"
     run:
+      name: mixinpractice
       image: "docker/whalesay:latest"
       command: cowsay
       arguments:
@@ -54,6 +55,6 @@ say:
 
 uninstall:
 - docker:
-    description: "Remove gauriprac"
+    description: "Remove mixinpractice"
     remove:
-      container: gauriprac
+      container: mixinpractice

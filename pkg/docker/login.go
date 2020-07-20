@@ -7,8 +7,8 @@ import (
 var _ builder.ExecutableStep = LoginCommand{}
 
 type LoginCommand struct {
-	Username      string        `yaml:"username"`
-	Password      string        `yaml:"password"`
+	Username  string        `yaml:"username"`
+	Password  string        `yaml:"password"`
 	Arguments []string      `yaml:"arguments,omitempty"`
 	Flags     builder.Flags `yaml:"flags,omitempty"`
 	Outputs   []Output      `yaml:"outputs,omitempty"`

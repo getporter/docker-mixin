@@ -3,6 +3,7 @@ package docker
 import (
 	"fmt"
 )
+
 // This is an example. Replace the following with whatever steps are needed to
 // install required components into
 const dockerfileLines = `FROM debian:stretch

@@ -7,22 +7,22 @@ import (
 var _ builder.ExecutableStep = RunCommand{}
 
 type RunCommand struct {
-	Name      string        `yaml:"name,omitempty"`
-	Image     string        `yaml:"image"`
-	Detach    bool          `yaml:"detach"`
-	Ports     []Ports       `yaml:"ports,omitempty"`
-	Env       map[string]string `yaml:"env,omitempty"`
-	Privileged     bool      `yaml:"privileged,omitempty"`
-	Rm 	    bool `yaml:"rm,omitempty"`
-	Command string `yaml:"command,omitempty"`
-	Arguments []string      `yaml:"arguments,omitempty"`
-	Flags     builder.Flags `yaml:"flags,omitempty"`
-	Outputs   []Output      `yaml:"outputs,omitempty"`
+	Name       string            `yaml:"name,omitempty"`
+	Image      string            `yaml:"image"`
+	Detach     bool              `yaml:"detach"`
+	Ports      []Ports           `yaml:"ports,omitempty"`
+	Env        map[string]string `yaml:"env,omitempty"`
+	Privileged bool              `yaml:"privileged,omitempty"`
+	Remove     bool              `yaml:"rm,omitempty"`
+	Command    string            `yaml:"command,omitempty"`
+	Arguments  []string          `yaml:"arguments,omitempty"`
+	Flags      builder.Flags     `yaml:"flags,omitempty"`
+	Outputs    []Output          `yaml:"outputs,omitempty"`
 }
 
 func (c RunCommand) GetSuffixArguments() []string {
 
-	args := []string {
+	args := []string{
 		c.Image,
 	}
 	if c.Command != "" {
@@ -33,7 +33,7 @@ func (c RunCommand) GetSuffixArguments() []string {
 }
 
 type Ports struct {
-	Host string `yaml: "host"`
+	Host      string `yaml: "host"`
 	Container string `yaml: "container"`
 }
 
@@ -57,13 +57,13 @@ func (c RunCommand) GetFlags() builder.Flags {
 	for key, value := range c.Env {
 		flags = append(flags, builder.NewFlag("env", key+"="+value))
 	}
-	for i:=0; i < len(c.Ports); i++ {
-		flags = append(flags, builder.NewFlag("p", c.Ports[i].Host + ":" + c.Ports[i].Container))
+	for _, port := range c.Ports {
+		flags = append(flags, builder.NewFlag("p", port.Host+":"+port.Container))
 	}
 	if c.Detach {
 		flags = append(flags, builder.NewFlag("d"))
 	}
-	if c.Rm {
+	if c.Remove {
 		flags = append(flags, builder.NewFlag("rm"))
 	}
 	if c.Name != "" {

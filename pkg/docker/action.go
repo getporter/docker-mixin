@@ -10,7 +10,7 @@ var _ builder.ExecutableAction = Action{}
 var _ builder.BuildableAction = Action{}
 
 type Action struct {
-	Name string
+	Name  string
 	Steps []Steps // using UnmarshalYAML so that we don't need a custom type per action
 }
 
@@ -61,7 +61,6 @@ type DockerStep struct {
 	Description string
 	DockerCommand
 }
-
 
 // UnmarshalYAML takes any yaml in this form
 // docker:
@@ -146,7 +145,6 @@ func (s Step) GetArguments() []string {
 func (s Step) GetSuffixArguments() []string {
 	return s.GetSuffixArguments()
 }
-
 
 func (s Step) GetFlags() builder.Flags {
 	return s.Flags
