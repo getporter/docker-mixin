@@ -17,6 +17,10 @@ func TestMixin_LoginEnv(t *testing.T) {
 	//login test
 	os.Setenv("DOCKER_USERNAME", "gmadhok")
 	os.Setenv("DOCKER_PASSWORD", "password")
+	defer func() {
+		os.Unsetenv("DOCKER_USERNAME")
+		os.Unsetenv("DOCKER_PASSWORD")
+	}()
 	b, err := ioutil.ReadFile("testdata/login-input.yaml")
 	require.NoError(t, err)
 
@@ -34,6 +38,4 @@ func TestMixin_LoginEnv(t *testing.T) {
 	flags := step.GetFlags()
 	sort.Sort(flags)
 	assert.Equal(t, builder.Flags{builder.NewFlag("p", "password"), builder.NewFlag("u", "gmadhok")}, flags)
-	os.Unsetenv("DOCKER_USERNAME")
-	os.Unsetenv("DOCKER_PASSWORD")
 }
