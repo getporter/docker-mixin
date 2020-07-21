@@ -1,0 +1,6 @@
+install:
+  - docker:
+      description: Push to registry
+      push:
+        name: getporter/porter-hello
+        tag: v0.1.0

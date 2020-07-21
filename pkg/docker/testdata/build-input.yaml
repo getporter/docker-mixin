@@ -1,0 +1,7 @@
+install:
+  - docker:
+      description: "Build image"
+      build:
+        tag: practice
+        file: myfile
+        path: /Users/myuser/Documents

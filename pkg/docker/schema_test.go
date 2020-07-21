@@ -52,7 +52,15 @@ func TestMixin_ValidateSchema(t *testing.T) {
 		file      string
 		wantError string
 	}{
-		{"install", "testdata/step-input.yaml", ""},
+		{"install", "testdata/pull-input.yaml", ""},
+		{"invalid property", "testdata/invalid-input.yaml", "Additional property args is not allowed"},
+		{"install", "testdata/push-input.yaml", ""},
+		{"invalid property", "testdata/invalid-input.yaml", "Additional property args is not allowed"},
+		{"install", "testdata/run-input.yaml", ""},
+		{"invalid property", "testdata/invalid-input.yaml", "Additional property args is not allowed"},
+		{"install", "testdata/remove-input.yaml", ""},
+		{"invalid property", "testdata/invalid-input.yaml", "Additional property args is not allowed"},
+		{"install", "testdata/build-input.yaml", ""},
 		{"invalid property", "testdata/invalid-input.yaml", "Additional property args is not allowed"},
 	}
 

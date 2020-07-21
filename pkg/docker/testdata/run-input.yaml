@@ -1,0 +1,11 @@
+install:
+  - docker:
+      description: Run container
+      run:
+        image: getporter/porter-hello
+        name: practice
+        detach: true
+        env:
+          password: password
+        privileged: true
+        rm: true

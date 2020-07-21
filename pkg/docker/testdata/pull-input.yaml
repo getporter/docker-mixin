@@ -1,0 +1,6 @@
+install:
+  - docker:
+      description: Prefetch the things
+      pull:
+        name: getporter/porter-hello
+        tag: v0.1.0
