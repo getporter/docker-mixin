@@ -1,6 +1,6 @@
-# My First Bundle
+# Docker Mixin Example Bundle
 
-This is an empty bundle that porter has created to get you started!
+This is an example bundle to show how to use the Docker mixin in Porter!
 
 # Contents
 
@@ -8,36 +8,23 @@ This is an empty bundle that porter has created to get you started!
 
 This is the porter manifest. See https://porter.sh/author-bundles/ for 
 details on every field and how to configure your bundle. This is a required
-file.
+file. 
 
-## helpers.sh
+The commands available in the docker mixin are docker pull, push, build, 
+run, remove, and login. 
 
-This is a bash script where you can place helper functions that you can call
-from your porter.yaml file.
+### Notes on docker login
+Login has two optional parameters - username and password. To pass in the 
+username and password, you can either enter them in the yaml or set them 
+as environment variables and pass them in as credentials. In order to pass 
+them in as credentials, you need to add the credentials section in the yaml. 
+You need to run porter credentials generate and specify where the values come
+from. Then, when you run porter install, pass in the credentials by doing 
+--cred or -c followed by the name of the credential set.
 
-## README.md
-
-This explains the files created by `porter create`. It is not used by porter and
-can be deleted.
-
-## Dockerfile.tmpl
-
-This is a template Dockerfile for the bundle's invocation image. You can
-customize it to use different base images, install tools and copy configuration
-files. Porter will use it as a template and append lines to it for the mixin and to set
-the CMD appropriately for the CNAB specification. You can delete this file if you don't
-need it.
-
-Add the following line to **porter.yaml** to enable the Dockerfile template:
-
-```yaml
-dockerfile: Dockerfile.tmpl
-```
-
-By default, the Dockerfile template is disabled and Porter automatically copies
-all of the files in the current directory into the bundle's invocation image. When
-you use a custom Dockerfile template, you must manually copy files into the bundle
-using COPY statements in the Dockerfile template.
+## Dockerfile-cookies
+This dockerfile was created to show how you can use docker build within a 
+bundle. Docker build under install uses this dockerfile to print out a message.
 
 ## .gitignore
 

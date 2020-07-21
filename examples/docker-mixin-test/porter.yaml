@@ -4,7 +4,7 @@ description: "An example bundle that uses docker through the magic of whalespeak
 tag: gmadhok/porter-hello/whalesay:v0.1.1
 
 required:
-- docker
+  - docker
 
 credentials:
   - name: DOCKER_USERNAME
@@ -12,63 +12,46 @@ credentials:
   - name: DOCKER_PASSWORD
     env: DOCKER_PASSWORD
 
-parameters:
-- name: msg
-  description: a message for the whales to speak
-  type: string
-  default: "whale hello there!"
-  applyTo:
-  - say
-
 mixins:
-- exec
-- docker
+  - docker
 
 install:
-- docker:
-    description: "Install Whalesay"
-    pull:
-      name: docker/whalesay
-      tag: latest
-- docker:
-    description: "Build image"
-    build:
-      tag: "gmadhok/cookies:v1.0"
-      file: Dockerfile-cookies
-- docker:
-    description: "Run Whalesay"
-    run:
-      name: mixinpractice
-      image: "docker/whalesay:latest"
-      command: cowsay
-      arguments:
-        - "Hello World"
-- docker:
-    description: "Login to docker"
-    login:
-- docker:
-    description: "Push image"
-    push:
-      name: gmadhok/cookies
-      tag: v1.0
+  - docker:
+      description: "Install Whalesay"
+      pull:
+        name: docker/whalesay
+        tag: latest
+  - docker:
+      description: "Build image"
+      build:
+        tag: "gmadhok/cookies:v1.0"
+        file: Dockerfile-cookies
+  - docker:
+      description: "Run Whalesay"
+      run:
+        name: mixinpractice
+        image: "docker/whalesay:latest"
+        command: cowsay
+        arguments:
+          - "Hello World"
 
 upgrade:
-- docker:
-    description: "Upgrade image"
-    pull:
-      name: docker/whalesay
-      tag: latest
-
-say:
-- exec:
-    description: "Say Something"
-    command: ./helpers.sh
-    arguments:
-    - whalesay
-    - '"{{ bundle.parameters.msg }}"'
+  - docker:
+      description: "Upgrade image"
+      pull:
+        name: docker/whalesay
+        tag: latest
 
 uninstall:
-- docker:
-    description: "Remove mixinpractice"
-    remove:
-      container: mixinpractice
+  - docker:
+      description: "Login to docker"
+      login:
+  - docker:
+      description: "Push image"
+      push:
+        name: gmadhok/cookies
+        tag: v1.0
+  - docker:
+      description: "Remove mixinpractice"
+      remove:
+        container: mixinpractice
