@@ -1,6 +1,8 @@
 package docker
 
 import (
+	"os"
+
 	"get.porter.sh/porter/pkg/exec/builder"
 )
 
@@ -27,10 +29,6 @@ func (c LoginCommand) GetArguments() []string {
 
 	args := []string{
 		"login",
-		"-u",
-		c.Username,
-		"-p",
-		c.Password,
 	}
 	args = append(args, c.Arguments...)
 
@@ -38,7 +36,18 @@ func (c LoginCommand) GetArguments() []string {
 }
 
 func (c LoginCommand) GetFlags() builder.Flags {
-	return c.Flags
+	var flags builder.Flags
+	var username string = c.Username
+	if username == "" {
+		username = os.Getenv("DOCKER_USERNAME")
+	}
+	flags = append(flags, builder.NewFlag("u", username))
+	var password string = c.Password
+	if password == "" {
+		password = os.Getenv("DOCKER_PASSWORD")
+	}
+	flags = append(flags, builder.NewFlag("p", password))
+	return flags
 }
 
 /*

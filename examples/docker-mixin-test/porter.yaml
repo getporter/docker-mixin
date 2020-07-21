@@ -1,10 +1,16 @@
 name: whalesay
 version: 0.1.1
 description: "An example bundle that uses docker through the magic of whalespeak"
-tag: getporter/whalesay:v0.1.1
+tag: gmadhok/porter-hello/whalesay:v0.1.1
 
 required:
 - docker
+
+credentials:
+  - name: DOCKER_USERNAME
+    env: DOCKER_USERNAME
+  - name: DOCKER_PASSWORD
+    env: DOCKER_PASSWORD
 
 parameters:
 - name: msg
@@ -37,6 +43,14 @@ install:
       command: cowsay
       arguments:
         - "Hello World"
+- docker:
+    description: "Login to docker"
+    login:
+- docker:
+    description: "Push image"
+    push:
+      name: gmadhok/cookies
+      tag: v1.0
 
 upgrade:
 - docker:
