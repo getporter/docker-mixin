@@ -36,7 +36,6 @@ func (c LoginCommand) GetArguments() []string {
 }
 
 func (c LoginCommand) GetFlags() builder.Flags {
-	//move to flags
 	var flags builder.Flags
 	var username string = c.Username
 	if username == "" {
