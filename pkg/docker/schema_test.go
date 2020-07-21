@@ -54,6 +54,14 @@ func TestMixin_ValidateSchema(t *testing.T) {
 	}{
 		{"install", "testdata/pull-input.yaml", ""},
 		{"invalid property", "testdata/invalid-input.yaml", "Additional property args is not allowed"},
+		{"install", "testdata/push-input.yaml", ""},
+		{"invalid property", "testdata/invalid-input.yaml", "Additional property args is not allowed"},
+		{"install", "testdata/run-input.yaml", ""},
+		{"invalid property", "testdata/invalid-input.yaml", "Additional property args is not allowed"},
+		{"install", "testdata/remove-input.yaml", ""},
+		{"invalid property", "testdata/invalid-input.yaml", "Additional property args is not allowed"},
+		{"install", "testdata/build-input.yaml", ""},
+		{"invalid property", "testdata/invalid-input.yaml", "Additional property args is not allowed"},
 	}
 
 	for _, tc := range testcases {

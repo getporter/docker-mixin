@@ -1,0 +1,60 @@
+name: whalesay
+version: 0.1.1
+description: "An example bundle that uses docker through the magic of whalespeak"
+tag: getporter/whalesay:v0.1.1
+
+required:
+- docker
+
+parameters:
+- name: msg
+  description: a message for the whales to speak
+  type: string
+  default: "whale hello there!"
+  applyTo:
+  - say
+
+mixins:
+- exec
+- docker
+
+install:
+- docker:
+    description: "Install Whalesay"
+    pull:
+      name: docker/whalesay
+      tag: latest
+- docker:
+    description: "Build image"
+    build:
+      tag: "gmadhok/cookies:v1.0"
+      file: Dockerfile-cookies
+- docker:
+    description: "Run Whalesay"
+    run:
+      name: mixinpractice
+      image: "docker/whalesay:latest"
+      command: cowsay
+      arguments:
+        - "Hello World"
+
+upgrade:
+- docker:
+    description: "Upgrade image"
+    pull:
+      name: docker/whalesay
+      tag: latest
+
+say:
+- exec:
+    description: "Say Something"
+    command: ./helpers.sh
+    arguments:
+    - whalesay
+    - '"{{ bundle.parameters.msg }}"'
+
+uninstall:
+- docker:
+    description: "Remove mixinpractice"
+    remove:
+      container: mixinpractice

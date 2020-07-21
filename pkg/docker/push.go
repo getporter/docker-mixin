@@ -6,53 +6,42 @@ import (
 	"get.porter.sh/porter/pkg/exec/builder"
 )
 
-var _ builder.ExecutableStep = PullCommand{}
+var _ builder.ExecutableStep = PushCommand{}
 
-type PullCommand struct {
+type PushCommand struct {
 	Name      string        `yaml:"name"`
 	Tag       string        `yaml:"tag,omitempty"`
-	Digest    string        `yaml:"digest,omitempty"`
 	Arguments []string      `yaml:"arguments,omitempty"`
 	Flags     builder.Flags `yaml:"flags,omitempty"`
 	Outputs   []Output      `yaml:"outputs,omitempty"`
 }
 
-func (c PullCommand) GetSuffixArguments() []string {
+func (c PushCommand) GetSuffixArguments() []string {
 	return nil
 }
 
-func (c PullCommand) GetCommand() string {
+func (c PushCommand) GetCommand() string {
 	return "docker"
 }
 
-func (c PullCommand) GetArguments() []string {
-	// Final Command: docker pull carolynvs/zombies:v1.0 ARGUMENTS --FLAGS
+func (c PushCommand) GetArguments() []string {
+	// Final Command: docker push carolynvs/zombies:v1.0 ARGUMENTS --FLAGS
 
 	// Arguments we need to return:
-	// pull
-	// carolynvs/zombies @ or : abc123 or v1.0
+	// push
+	// carolynvs/zombies:v1.0
 	// ARGUMENTS
 
-	var seperator string
-	var tagOrDigest string
-	if c.Digest != "" {
-		seperator = "@"
-		tagOrDigest = c.Digest
-	} else {
-		seperator = ":"
-		tagOrDigest = c.Tag
-	}
-
 	args := []string{
-		"pull",
-		fmt.Sprint(c.Name, seperator, tagOrDigest),
+		"push",
+		fmt.Sprint(c.Name, ":", c.Tag),
 	}
 	args = append(args, c.Arguments...)
 
 	return args
 }
 
-func (c PullCommand) GetFlags() builder.Flags {
+func (c PushCommand) GetFlags() builder.Flags {
 	return c.Flags
 }
 
