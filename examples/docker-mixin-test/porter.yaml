@@ -6,6 +6,12 @@ tag: gmadhok/porter-hello/whalesay:v0.1.1
 required:
 - docker
 
+credentials:
+  - name: DOCKER_USERNAME
+    env: DOCKER_USERNAME
+  - name: DOCKER_PASSWORD
+    env: DOCKER_PASSWORD
+
 parameters:
 - name: msg
   description: a message for the whales to speak
@@ -40,8 +46,6 @@ install:
 - docker:
     description: "Login to docker"
     login:
-      username: gmadhok
-      password: "&H7,BH?u5#85Bc^"
 - docker:
     description: "Push image"
     push:

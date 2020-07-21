@@ -34,5 +34,6 @@ func TestMixin_LoginEnv(t *testing.T) {
 	flags := step.GetFlags()
 	sort.Sort(flags)
 	assert.Equal(t, builder.Flags{builder.NewFlag("p", "password"), builder.NewFlag("u", "gmadhok")}, flags)
-
+	os.Unsetenv("DOCKER_USERNAME")
+	os.Unsetenv("DOCKER_PASSWORD")
 }
