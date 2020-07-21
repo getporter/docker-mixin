@@ -1,13 +1,14 @@
 package docker
 
 import (
+	"io/ioutil"
+	"sort"
+	"testing"
+
 	"get.porter.sh/porter/pkg/exec/builder"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"gopkg.in/yaml.v2"
-	"io/ioutil"
-	"sort"
-	"testing"
 )
 
 func TestMixin_UnmarshalStep(t *testing.T) {
@@ -30,6 +31,8 @@ func TestMixin_UnmarshalStep(t *testing.T) {
 			[]string{"run"}, builder.Flags{builder.NewFlag("d"), builder.NewFlag("env", "password=password"), builder.NewFlag("name", "practice"), builder.NewFlag("privileged"), builder.NewFlag("rm")}, []string{"getporter/porter-hello"}},
 		{"remove", "testdata/remove-input.yaml", "Remove container",
 			[]string{"rm"}, builder.Flags{builder.NewFlag("f")}, []string{"practice"}},
+		{"login", "testdata/login-input.yaml", "Login to docker",
+			[]string{"login"}, builder.Flags{builder.NewFlag("p", "password"), builder.NewFlag("u", "gmadhok")}, nil},
 	}
 
 	for _, tc := range testcases {

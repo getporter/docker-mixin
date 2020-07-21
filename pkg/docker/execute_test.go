@@ -29,7 +29,7 @@ func TestMixin_Execute(t *testing.T) {
 		{"push", "testdata/push-input.yaml", "",
 			"docker push getporter/porter-hello:v0.1.0"},
 		{"login", "testdata/login-input.yaml", "",
-			"docker login -u gmadhok -p password"},
+			"docker login -p password -u gmadhok"},
 		{"run", "testdata/run-input.yaml", "",
 			"docker run -d --env password=password --name practice --privileged --rm getporter/porter-hello"},
 		{"remove", "testdata/remove-input.yaml", "",
