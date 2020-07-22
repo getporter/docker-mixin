@@ -18,12 +18,14 @@ The commands available are docker pull, push, build, run, remove, and login.
 The same syntax applies for install, upgrade, and uninstall.
 
 ### Docker pull
+You can specify either the tag or the digest.
 ```yaml
 - docker:
     description: 
     pull:
       name:
       tag:
+      digest: 
 ```
 
 ### Docker push

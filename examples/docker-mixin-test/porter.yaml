@@ -37,13 +37,6 @@ install:
 
 upgrade:
   - docker:
-      description: "Upgrade image"
-      pull:
-        name: docker/whalesay
-        tag: latest
-
-uninstall:
-  - docker:
       description: "Login to docker"
       login:
   - docker:
@@ -51,6 +44,13 @@ uninstall:
       push:
         name: gmadhok/cookies
         tag: v1.0
+  - docker:
+      description: "Upgrade image"
+      pull:
+        name: docker/whalesay
+        tag: latest
+
+uninstall:
   - docker:
       description: "Remove mixinpractice"
       remove:
