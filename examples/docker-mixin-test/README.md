@@ -20,7 +20,7 @@ as environment variables and pass them in as credentials. In order to pass
 them in as credentials, you need to add the credentials section in the yaml. 
 You need to run [porter credentials generate](https://porter.sh/cli/porter_credentials_generate/) and specify where the values come
 from. Then, when you run [porter install](https://porter.sh/cli/porter_install), pass in the credentials by doing 
---cred or -c followed by the name of the credential set.
+--cred or -c followed by the name of the credential set, for example `porter install --cred mycreds`.
 
 ## Dockerfile-cookies
 This dockerfile was created to show how you can use docker build within a 
