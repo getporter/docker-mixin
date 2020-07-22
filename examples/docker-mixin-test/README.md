@@ -24,7 +24,7 @@ from. Then, when you run [porter install](https://porter.sh/cli/porter_install),
 
 ## Dockerfile-cookies
 This dockerfile was created to show how you can use docker build within a 
-bundle. Docker build under install uses this dockerfile to print out a message.
+bundle. The docker build step defined in the install action of the porter.yaml uses this dockerfile to print out a message.
 
 ## .gitignore
 
