@@ -18,7 +18,7 @@ Login has two optional parameters - username and password. To pass in the
 username and password, you can either enter them in the yaml or set them 
 as environment variables and pass them in as credentials. In order to pass 
 them in as credentials, you need to add the credentials section in the yaml. 
-You need to run porter credentials generate and specify where the values come
+You need to run [porter credentials generate](https://porter.sh/cli/porter_credentials_generate/) and specify where the values come
 from. Then, when you run porter install, pass in the credentials by doing 
 --cred or -c followed by the name of the credential set.
 
