@@ -14,10 +14,10 @@ The commands available in the docker mixin are docker pull, push, build,
 run, remove, and login. 
 
 ### Notes on docker login
-Login has two optional parameters - username and password. To pass in the 
-username and password, you can either enter them in the yaml or set them 
-as environment variables and pass them in as credentials. In order to pass 
-them in as credentials, you need to add the credentials section in the yaml. 
+Login has two optional parameters - username and password. See an [example] (../../README.md) for how to use 
+docker login and securely provide your username and password. To pass in the 
+username and password, you should set them as environment variables and pass them in to 
+your bundle as credentials. In order to pass them in as credentials, you need to add the credentials section in the yaml. 
 You need to run [porter credentials generate](https://porter.sh/cli/porter_credentials_generate/) and specify where the values come
 from. Then, when you run [porter install](https://porter.sh/cli/porter_install), pass in the credentials by doing 
 --cred or -c followed by the name of the credential set, for example `porter install --cred mycreds`.
