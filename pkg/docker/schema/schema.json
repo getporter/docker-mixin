@@ -241,34 +241,34 @@
             }
           },
           "additionalProperties": false
-        }
-      },
-      "login": {
-        "type": "object",
-        "properties": {
-          "username": {
-            "type": "string"
-          },
-          "password": {
-            "type": "string"
-          },
-          "arguments": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "flags": {
-            "type": "object",
-            "additionalProperties": {
-              "type": ["null","boolean","number","string"]
-            }
-          },
-          "outputs": {
-            "$ref": "#/definitions/outputs"
-          }
         },
-        "additionalProperties": false
+        "login": {
+          "type": ["string", "object", "null"],
+          "properties": {
+            "username": {
+              "type": "string"
+            },
+            "password": {
+              "type": "string"
+            },
+            "arguments": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "flags": {
+              "type": "object",
+              "additionalProperties": {
+                "type": ["null","boolean","number","string"]
+              }
+            },
+            "outputs": {
+              "$ref": "#/definitions/outputs"
+            }
+          },
+          "additionalProperties": false
+        }
       },
       "additionalProperties": false,
       "required": [
