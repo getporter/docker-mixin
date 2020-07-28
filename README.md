@@ -36,9 +36,6 @@ You can specify either the tag or the digest.
         REPEATED_FLAG:
         - FLAGVALUE1
         - FLAGVALUE2
-      outputs:
-        - name: NAME
-          hostname: HOSTNAME
 ```
 
 #### Example
@@ -67,9 +64,6 @@ You can specify either the tag or the digest.
         REPEATED_FLAG:
         - FLAGVALUE1
         - FLAGVALUE2
-      outputs:
-        - name: NAME
-          hostname: HOSTNAME
 ```
 
 #### Example
@@ -99,9 +93,6 @@ You can specify either the tag or the digest.
         REPEATED_FLAG:
         - FLAGVALUE1
         - FLAGVALUE2
-      outputs:
-        - name: NAME
-          hostname: HOSTNAME
 ```
 
 #### Example
@@ -124,8 +115,8 @@ You can specify either the tag or the digest.
       name: NAME 
       detach: BOOL #defaults to false
       ports:
-        - host: HOST_PORT
-          container: CONTAINER_PORT
+        - host: NUMBER # porter exposed on the host
+          container: NUMBER # port exposed by the container
       env:
         variable: VALUE
       privileged: BOOL #defaults to false
@@ -139,9 +130,6 @@ You can specify either the tag or the digest.
         REPEATED_FLAG:
         - FLAGVALUE1
         - FLAGVALUE2
-      outputs:
-        - name: NAME
-          hostname: HOSTNAME
 ```
 
 #### Example
@@ -181,9 +169,6 @@ You can specify either the tag or the digest.
         REPEATED_FLAG:
         - FLAGVALUE1
         - FLAGVALUE2
-      outputs:
-        - name: NAME
-          hostname: HOSTNAME
 ```
 
 #### Example
@@ -199,6 +184,8 @@ You can specify either the tag or the digest.
 
 #### Syntax
 Username and password are optional because the mixin will default to using environment variables provided by DOCKER_USERNAME and DOCKER_PASSWORD from a parameter or a credential.
+See an [example] (/examples/docker-mixin-test/README.md#notes-on-docker-login) for how to use 
+docker login and securely provide your username and password.
 ```yaml
 - docker:
     description: "Description of the command"
@@ -213,9 +200,6 @@ Username and password are optional because the mixin will default to using envir
         REPEATED_FLAG:
         - FLAGVALUE1
         - FLAGVALUE2
-      outputs:
-        - name: NAME
-          hostname: HOSTNAME
 ```
 
 #### Example

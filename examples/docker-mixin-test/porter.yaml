@@ -1,7 +1,7 @@
 name: whalesay
 version: 0.1.1
 description: "An example bundle that uses docker through the magic of whalespeak"
-tag: gmadhok/porter-hello/whalesay:v0.1.1
+tag: gmadhok/porter-hello/whalesay-mixin:v0.1.1
 
 required:
   - docker
