@@ -4,8 +4,7 @@ import (
 	"get.porter.sh/porter/pkg/exec/builder"
 )
 
-var _ builder.ExecutableStep = BuildCommand{}
-var _ builder.HasOrderedArguments = BuildCommand{}
+var _ DockerCommand = BuildCommand{}
 
 type BuildCommand struct {
 	Tag       string        `yaml:"tag"`
@@ -52,6 +51,10 @@ func (c BuildCommand) GetFlags() builder.Flags {
 	}
 	flags = append(flags, c.Flags...)
 	return flags
+}
+
+func (c BuildCommand) SuppressesOutput() bool {
+	return false
 }
 
 /*

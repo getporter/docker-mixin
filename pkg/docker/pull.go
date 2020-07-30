@@ -6,7 +6,7 @@ import (
 	"get.porter.sh/porter/pkg/exec/builder"
 )
 
-var _ builder.ExecutableStep = PullCommand{}
+var _ DockerCommand = PullCommand{}
 
 type PullCommand struct {
 	Name      string        `yaml:"name"`
@@ -54,6 +54,10 @@ func (c PullCommand) GetArguments() []string {
 
 func (c PullCommand) GetFlags() builder.Flags {
 	return c.Flags
+}
+
+func (c PullCommand) SuppressesOutput() bool {
+	return false
 }
 
 /*

@@ -56,6 +56,7 @@ type Steps struct {
 
 var _ builder.ExecutableStep = DockerStep{}
 var _ builder.HasOrderedArguments = DockerStep{}
+var _ builder.SuppressesOutput = DockerStep{}
 
 type DockerStep struct {
 	Description string
@@ -121,17 +122,18 @@ func (s *DockerStep) UnmarshalYAML(unmarshal func(interface{}) error) error {
 type DockerCommand interface {
 	builder.ExecutableStep
 	builder.HasOrderedArguments
+	builder.SuppressesOutput
 }
 
-var _ builder.ExecutableStep = Step{}
-var _ builder.StepWithOutputs = Step{}
+var _ DockerCommand = Step{}
 
 type Step struct {
-	Name        string        `yaml:"name"`
-	Description string        `yaml:"description"`
-	Arguments   []string      `yaml:"arguments,omitempty"`
-	Flags       builder.Flags `yaml:"flags,omitempty"`
-	Outputs     []Output      `yaml:"outputs,omitempty"`
+	Name           string        `yaml:"name"`
+	Description    string        `yaml:"description"`
+	Arguments      []string      `yaml:"arguments,omitempty"`
+	Flags          builder.Flags `yaml:"flags,omitempty"`
+	SuppressOutput bool          `yaml:"suppress-output,omitempty"`
+	Outputs        []Output      `yaml:"outputs,omitempty"`
 }
 
 func (s Step) GetCommand() string {
@@ -148,6 +150,10 @@ func (s Step) GetSuffixArguments() []string {
 
 func (s Step) GetFlags() builder.Flags {
 	return s.Flags
+}
+
+func (s Step) SuppressesOutput() bool {
+	return s.SuppressOutput
 }
 
 func (s Step) GetOutputs() []builder.Output {

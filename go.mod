@@ -5,7 +5,6 @@ go 1.13
 require (
 	get.porter.sh/porter v0.27.2-0.20200720191056-a355e3031887
 	github.com/ghodss/yaml v1.0.0
-	github.com/gobuffalo/envy v1.7.1 // indirect
 	github.com/gobuffalo/packr/v2 v2.8.0
 	github.com/pkg/errors v0.8.1
 	github.com/spf13/cobra v0.0.6

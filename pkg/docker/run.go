@@ -4,7 +4,7 @@ import (
 	"get.porter.sh/porter/pkg/exec/builder"
 )
 
-var _ builder.ExecutableStep = RunCommand{}
+var _ DockerCommand = RunCommand{}
 
 type RunCommand struct {
 	Name       string            `yaml:"name,omitempty"`
@@ -71,6 +71,10 @@ func (c RunCommand) GetFlags() builder.Flags {
 	}
 	flags = append(flags, c.Flags...)
 	return flags
+}
+
+func (c RunCommand) SuppressesOutput() bool {
+	return false
 }
 
 /*

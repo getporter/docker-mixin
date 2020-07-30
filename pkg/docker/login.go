@@ -6,7 +6,7 @@ import (
 	"get.porter.sh/porter/pkg/exec/builder"
 )
 
-var _ builder.ExecutableStep = LoginCommand{}
+var _ DockerCommand = LoginCommand{}
 
 type LoginCommand struct {
 	Username  string        `yaml:"username"`
@@ -48,6 +48,10 @@ func (c LoginCommand) GetFlags() builder.Flags {
 	}
 	flags = append(flags, builder.NewFlag("p", password))
 	return flags
+}
+
+func (c LoginCommand) SuppressesOutput() bool {
+	return true
 }
 
 /*
