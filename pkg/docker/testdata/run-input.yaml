@@ -9,3 +9,4 @@ install:
           password: password
         privileged: true
         rm: true
+        suppress-output: true

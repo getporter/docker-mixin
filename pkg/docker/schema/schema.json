@@ -179,6 +179,10 @@
                 "type": ["null","boolean","number","string"]
               }
             },
+            "suppress-output": {
+              "description": "Do not print output for this step",
+              "type": "boolean"
+            },
             "outputs": {
               "$ref": "#/definitions/outputs"
             }

@@ -4,7 +4,7 @@ import (
 	"get.porter.sh/porter/pkg/exec/builder"
 )
 
-var _ builder.ExecutableStep = RemoveCommand{}
+var _ DockerCommand = RemoveCommand{}
 
 type RemoveCommand struct {
 	Container string        `yaml:"container"`
@@ -42,6 +42,10 @@ func (c RemoveCommand) GetFlags() builder.Flags {
 	}
 	flags = append(flags, c.Flags...)
 	return flags
+}
+
+func (c RemoveCommand) SuppressesOutput() bool {
+	return false
 }
 
 /*
