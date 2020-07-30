@@ -7,17 +7,18 @@ import (
 var _ DockerCommand = RunCommand{}
 
 type RunCommand struct {
-	Name       string            `yaml:"name,omitempty"`
-	Image      string            `yaml:"image"`
-	Detach     bool              `yaml:"detach"`
-	Ports      []Ports           `yaml:"ports,omitempty"`
-	Env        map[string]string `yaml:"env,omitempty"`
-	Privileged bool              `yaml:"privileged,omitempty"`
-	Remove     bool              `yaml:"rm,omitempty"`
-	Command    string            `yaml:"command,omitempty"`
-	Arguments  []string          `yaml:"arguments,omitempty"`
-	Flags      builder.Flags     `yaml:"flags,omitempty"`
-	Outputs    []Output          `yaml:"outputs,omitempty"`
+	Name           string            `yaml:"name,omitempty"`
+	Image          string            `yaml:"image"`
+	Detach         bool              `yaml:"detach"`
+	Ports          []Ports           `yaml:"ports,omitempty"`
+	Env            map[string]string `yaml:"env,omitempty"`
+	Privileged     bool              `yaml:"privileged,omitempty"`
+	Remove         bool              `yaml:"rm,omitempty"`
+	Command        string            `yaml:"command,omitempty"`
+	Arguments      []string          `yaml:"arguments,omitempty"`
+	Flags          builder.Flags     `yaml:"flags,omitempty"`
+	SuppressOutput bool              `yaml:"suppress-output,omitempty"`
+	Outputs        []Output          `yaml:"outputs,omitempty"`
 }
 
 func (c RunCommand) GetSuffixArguments() []string {
@@ -74,7 +75,7 @@ func (c RunCommand) GetFlags() builder.Flags {
 }
 
 func (c RunCommand) SuppressesOutput() bool {
-	return false
+	return c.SuppressOutput
 }
 
 /*

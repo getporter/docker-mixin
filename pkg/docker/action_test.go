@@ -28,7 +28,7 @@ func TestMixin_UnmarshalStep(t *testing.T) {
 		{"build", "testdata/build-input.yaml", "Build image",
 			[]string{"build"}, builder.Flags{builder.NewFlag("f", "myfile"), builder.NewFlag("t", "practice")}, []string{"/Users/myuser/Documents"}, false},
 		{"run", "testdata/run-input.yaml", "Run container",
-			[]string{"run"}, builder.Flags{builder.NewFlag("d"), builder.NewFlag("env", "password=password"), builder.NewFlag("name", "practice"), builder.NewFlag("privileged"), builder.NewFlag("rm")}, []string{"getporter/porter-hello"}, false},
+			[]string{"run"}, builder.Flags{builder.NewFlag("d"), builder.NewFlag("env", "password=password"), builder.NewFlag("name", "practice"), builder.NewFlag("privileged"), builder.NewFlag("rm")}, []string{"getporter/porter-hello"}, true},
 		{"remove", "testdata/remove-input.yaml", "Remove container",
 			[]string{"rm"}, builder.Flags{builder.NewFlag("f")}, []string{"practice"}, false},
 		{"login", "testdata/login-input.yaml", "Login to docker",
@@ -59,7 +59,7 @@ func TestMixin_UnmarshalStep(t *testing.T) {
 			suffixArgs := step.GetSuffixArguments()
 			assert.Equal(t, tc.wantSuffixArgs, suffixArgs)
 
-			assert.Equal(t, tc.wantSuppress, step.SuppressesOutput())
+			assert.Equal(t, tc.wantSuppress, step.SuppressesOutput(), "invalid suppress-output")
 		})
 	}
 }
