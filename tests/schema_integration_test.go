@@ -22,8 +22,7 @@ func TestSchema(t *testing.T) {
 	require.NoError(t, err, "failed to sabotage the schema.json")
 
 	output := &bytes.Buffer{}
-	cmd := exec.Command("docker", "schema")
-	cmd.Path = "../bin/mixins/docker/docker"
+	cmd := exec.Command("../bin/mixins/docker/docker", "schema")
 	cmd.Stdout = output
 	cmd.Stderr = output
 
