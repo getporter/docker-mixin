@@ -130,6 +130,7 @@ You can specify either the tag or the digest.
         REPEATED_FLAG:
         - FLAGVALUE1
         - FLAGVALUE2
+      suppress-output: BOOL #defaults to false
 ```
 
 #### Example
