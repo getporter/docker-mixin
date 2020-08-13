@@ -11,6 +11,13 @@ mixins:
 - docker
 ```
 
+## Mixin Configuration
+
+Docker client configuration
+```yaml
+- docker:
+    clientVersion: 19.03.8
+```
 ## Mixin Commands
 The commands available are docker pull, push, build, run, remove, and login. 
 
