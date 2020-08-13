@@ -17,7 +17,6 @@ RUN apt-get update && apt-get install -y curl ca-certificates
 
 ARG DOCKER_VERSION=%s
 RUN curl -o docker.tgz https://download.docker.com/linux/static/stable/x86_64/docker-${DOCKER_VERSION}.tgz && \
-RUN curl -o docker.tgz https://download.docker.com/linux/static/stable/x86_64/docker-${DOCKER_VERSION}.tgz && \
     tar -xvf docker.tgz && \
     mv docker/docker /usr/bin/docker && \
     chmod +x /usr/bin/docker && \
@@ -29,7 +28,6 @@ COPY . $BUNDLE_DIR
 func TestMixin_Build(t *testing.T) {
 	t.Run("build with the default Docker version", func(t *testing.T) {
 		m := NewTestMixin(t)
-
 		err := m.Build()
 		require.NoError(t, err)
 

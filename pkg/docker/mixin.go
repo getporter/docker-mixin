@@ -12,16 +12,12 @@ import (
 	"github.com/pkg/errors"
 )
 
-// DefaultWorkingDir is the default working directory for Terraform
-const DefaultWorkingDir = "/cnab/app/docker"
-
 const defaultDockerVersion = "19.03.8"
 
 type Mixin struct {
 	*context.Context
 	//add whatever other context/state is needed here
 	schema        *packr.Box
-	WorkingDir    string
 	DockerVersion string
 }
 
@@ -30,7 +26,6 @@ func New() (*Mixin, error) {
 	return &Mixin{
 		Context:       context.New(),
 		schema:        packr.New("schema", "./schema"),
-		WorkingDir:    DefaultWorkingDir,
 		DockerVersion: defaultDockerVersion,
 	}, nil
 

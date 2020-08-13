@@ -1,7 +1,7 @@
 package docker
 
 import (
-	"log"
+	"fmt"
 
 	"get.porter.sh/porter/pkg/exec/builder"
 	"github.com/ghodss/yaml"
@@ -14,8 +14,7 @@ const dockerfileLines = `FROM debian:stretch
 ARG BUNDLE_DIR
 RUN apt-get update && apt-get install -y curl ca-certificates
 
-ARG DOCKER_VERSION=19.03.8
-RUN curl -o docker.tgz https://download.docker.com/linux/static/stable/x86_64/docker-${DOCKER_VERSION}.tgz && \
+ARG DOCKER_VERSION=%s
 RUN curl -o docker.tgz https://download.docker.com/linux/static/stable/x86_64/docker-${DOCKER_VERSION}.tgz && \
     tar -xvf docker.tgz && \
     mv docker/docker /usr/bin/docker && \
@@ -52,9 +51,11 @@ func (m *Mixin) Build() error {
 
 	if input.Config.ClientVersion != "" {
 		m.DockerVersion = input.Config.ClientVersion
+	} else {
+		m.DockerVersion = defaultDockerVersion
 	}
 
-	log.Println(m.Out, dockerfileLines, m.DockerVersion, m.WorkingDir)
+	fmt.Fprintf(m.Out, dockerfileLines, m.DockerVersion)
 	return nil
 	//fmt.Fprintf(m.Out, dockerfileLines)
 	//return nil
