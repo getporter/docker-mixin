@@ -13,7 +13,7 @@ mixins:
 
 ## Mixin Configuration
 
-Docker client configuration
+The Docker client version can be specified via the `clientVersion` configuration when declaring this mixin.
 ```yaml
 - docker:
     clientVersion: 19.03.8
