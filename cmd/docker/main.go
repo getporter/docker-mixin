@@ -22,10 +22,7 @@ func main() {
 }
 
 func buildRootCommand(in io.Reader) (*cobra.Command, error) {
-	m, err := docker.New()
-	if err != nil {
-		return nil, err
-	}
+	m := docker.New()
 	m.In = in
 	cmd := &cobra.Command{
 		Use:  "docker",

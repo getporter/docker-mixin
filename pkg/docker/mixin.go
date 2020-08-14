@@ -21,14 +21,13 @@ type Mixin struct {
 	DockerVersion string
 }
 
-// New azure mixin client, initialized with useful defaults.
-func New() (*Mixin, error) {
+// New docker mixin client, initialized with useful defaults.
+func New() *Mixin {
 	return &Mixin{
 		Context:       context.New(),
 		schema:        packr.New("schema", "./schema"),
 		DockerVersion: defaultDockerVersion,
-	}, nil
-
+	}
 }
 
 func (m *Mixin) getPayloadData() ([]byte, error) {

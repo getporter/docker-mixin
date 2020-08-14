@@ -51,8 +51,6 @@ func (m *Mixin) Build() error {
 
 	if input.Config.ClientVersion != "" {
 		m.DockerVersion = input.Config.ClientVersion
-	} else {
-		m.DockerVersion = defaultDockerVersion
 	}
 
 	fmt.Fprintf(m.Out, dockerfileLines, m.DockerVersion)
