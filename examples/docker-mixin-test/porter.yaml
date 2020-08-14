@@ -13,7 +13,8 @@ credentials:
     env: DOCKER_PASSWORD
 
 mixins:
-  - docker
+  - docker:
+      clientVersion: 19.03.12
 
 install:
   - docker:

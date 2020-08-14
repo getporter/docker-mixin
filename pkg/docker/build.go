@@ -32,7 +32,7 @@ type BuildInput struct {
 // MixinConfig represents configuration that can be set on the docker mixin in porter.yaml
 // mixins:
 // - docker:
-//	  version: 19.03.8
+//	  clientVersion: 19.03.8
 type MixinConfig struct {
 	ClientVersion string `yaml:"clientVersion,omitempty"`
 }
@@ -55,6 +55,4 @@ func (m *Mixin) Build() error {
 
 	fmt.Fprintf(m.Out, dockerfileLines, m.DockerVersion)
 	return nil
-	//fmt.Fprintf(m.Out, dockerfileLines)
-	//return nil
 }
