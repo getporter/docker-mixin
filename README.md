@@ -2,6 +2,9 @@
 
 This is a Docker mixin for Porter. The mixin provides the Docker CLI. 
 
+[![Build Status](https://dev.azure.com/getporter/porter/_apis/build/status/docker-mixin?branchName=main)](https://dev.azure.com/getporter/porter/_build/latest?definitionId=12&branchName=main)
+
+
 ## Mixin Declaration
 
 To use this mixin in a bundle, declare it like so:
