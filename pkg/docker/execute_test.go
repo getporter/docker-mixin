@@ -3,7 +3,6 @@ package docker
 import (
 	"bytes"
 	"io/ioutil"
-	"os"
 	"path"
 	"testing"
 
@@ -38,12 +37,12 @@ func TestMixin_Execute(t *testing.T) {
 			"docker build -f myfile -t practice /Users/myuser/Documents"},
 	}
 
-	defer os.Unsetenv(test.ExpectedCommandEnv)
 	for _, tc := range testcases {
+		tc := tc
 		t.Run(tc.name, func(t *testing.T) {
 			m := NewTestMixin(t)
 
-			os.Setenv(test.ExpectedCommandEnv, tc.wantCommand)
+			m.Setenv(test.ExpectedCommandEnv, tc.wantCommand)
 			mixinInputB, err := ioutil.ReadFile(tc.file)
 			require.NoError(t, err)
 
