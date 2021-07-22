@@ -12,7 +12,7 @@ import (
 	"github.com/pkg/errors"
 )
 
-const defaultDockerVersion = "19.03.8"
+const defaultDockerVersion = "20.10.7"
 
 type Mixin struct {
 	*context.Context

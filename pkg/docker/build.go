@@ -26,7 +26,7 @@ type BuildInput struct {
 // MixinConfig represents configuration that can be set on the docker mixin in porter.yaml
 // mixins:
 // - docker:
-//	  clientVersion: 19.03.8
+//	  clientVersion: 20.10.7
 type MixinConfig struct {
 	ClientVersion string `yaml:"clientVersion,omitempty"`
 }

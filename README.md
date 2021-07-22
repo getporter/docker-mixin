@@ -1,6 +1,6 @@
 # A Docker Mixin for Porter
 
-This is a Docker mixin for Porter. The mixin provides the Docker CLI. 
+This is a Docker mixin for Porter. The mixin provides the Docker CLI.
 
 [![Build Status](https://dev.azure.com/getporter/porter/_apis/build/status/docker-mixin?branchName=main)](https://dev.azure.com/getporter/porter/_build/latest?definitionId=12&branchName=main)
 
@@ -17,13 +17,13 @@ mixins:
 
 ## Mixin Configuration
 
-The Docker client version can be specified via the `clientVersion` configuration when declaring this mixin. The default client version is currently set to 19.03.8.
+The Docker client version can be specified via the `clientVersion` configuration when declaring this mixin. The default client version is currently set to 20.10.7.
 ```yaml
 - docker:
-    clientVersion: 19.03.8
+    clientVersion: 20.10.7
 ```
 ## Mixin Commands
-The commands available are docker pull, push, build, run, remove, and login. 
+The commands available are docker pull, push, build, run, remove, and login.
 
 ## Mixin Syntax & Examples
 The same syntax applies for install, upgrade, and uninstall.
@@ -123,7 +123,7 @@ You can specify either the tag or the digest.
     description: "Description of the command"
     run:
       image: IMAGE
-      name: NAME 
+      name: NAME
       detach: BOOL #defaults to false
       ports:
         - host: NUMBER # porter exposed on the host
@@ -196,12 +196,11 @@ You can specify either the tag or the digest.
 
 #### Syntax
 Username and password are optional because the mixin will default to using environment variables provided by DOCKER_USERNAME and DOCKER_PASSWORD from a parameter or a credential.
-See an [example](/examples/docker-mixin-test/README.md#notes-on-docker-login) for how to use 
-docker login and securely provide your username and password.
+See an [example](/examples/docker-mixin-test/README.md#notes-on-docker-login) for how to use docker login and securely provide your username and password.
 ```yaml
 - docker:
     description: "Description of the command"
-    login: 
+    login:
       username: USERNAME #OPTIONAL
       password: PASSWORD #OPTIONAL
       arguments:
