@@ -16,7 +16,7 @@ func TestMixin_Build(t *testing.T) {
 		err := m.Build()
 		require.NoError(t, err)
 
-		wantOutput := fmt.Sprintf(dockerfileLines, "19.03.8")
+		wantOutput := fmt.Sprintf(dockerfileLines, "20.10.7")
 
 		gotOutput := m.TestContext.GetOutput()
 		assert.Equal(t, wantOutput, gotOutput)
