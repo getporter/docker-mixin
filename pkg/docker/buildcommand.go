@@ -15,6 +15,10 @@ type BuildCommand struct {
 	Outputs   []Output      `yaml:"outputs,omitempty"`
 }
 
+func (c BuildCommand) GetWorkingDir() string {
+	return "."
+}
+
 func (c BuildCommand) GetSuffixArguments() []string {
 	var path = ""
 	if c.Path != "" {

@@ -26,6 +26,10 @@ func (c RemoveCommand) GetCommand() string {
 	return "docker"
 }
 
+func (c RemoveCommand) GetWorkingDir() string {
+	return "."
+}
+
 func (c RemoveCommand) GetArguments() []string {
 	// Final Command: docker rm [OPTIONS] CONTAINER ARGUMENTS --FLAGS
 	args := []string{

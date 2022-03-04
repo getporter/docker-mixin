@@ -25,6 +25,10 @@ func (c PullCommand) GetCommand() string {
 	return "docker"
 }
 
+func (c PullCommand) GetWorkingDir() string {
+	return "."
+}
+
 func (c PullCommand) GetArguments() []string {
 	// Final Command: docker pull carolynvs/zombies:v1.0 ARGUMENTS --FLAGS
 
