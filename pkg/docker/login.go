@@ -24,6 +24,10 @@ func (c LoginCommand) GetCommand() string {
 	return "docker"
 }
 
+func (c LoginCommand) GetWorkingDir() string {
+	return "."
+}
+
 func (c LoginCommand) GetArguments() []string {
 	// Final Command: docker login -u username -p password ARGUMENTS --FLAGS
 

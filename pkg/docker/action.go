@@ -140,6 +140,10 @@ func (s Step) GetCommand() string {
 	return "docker"
 }
 
+func (s Step) GetWorkingDir() string {
+	return "."
+}
+
 func (s Step) GetArguments() []string {
 	return s.Arguments
 }

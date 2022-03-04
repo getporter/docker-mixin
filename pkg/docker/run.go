@@ -34,12 +34,16 @@ func (c RunCommand) GetSuffixArguments() []string {
 }
 
 type Ports struct {
-	Host      string `yaml: "host"`
-	Container string `yaml: "container"`
+	Host      string `yaml:"host"`
+	Container string `yaml:"container"`
 }
 
 func (c RunCommand) GetCommand() string {
 	return "docker"
+}
+
+func (c RunCommand) GetWorkingDir() string {
+	return "."
 }
 
 func (c RunCommand) GetArguments() []string {
