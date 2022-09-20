@@ -2,6 +2,7 @@ package docker
 
 import (
 	"bytes"
+	"context"
 	"fmt"
 	"io/ioutil"
 	"testing"
@@ -13,7 +14,7 @@ import (
 func TestMixin_Build(t *testing.T) {
 	t.Run("build with the default Docker version", func(t *testing.T) {
 		m := NewTestMixin(t)
-		err := m.Build()
+		err := m.Build(context.Background())
 		require.NoError(t, err)
 
 		wantOutput := fmt.Sprintf(dockerfileLines, "20.10.7")
@@ -28,7 +29,7 @@ func TestMixin_Build(t *testing.T) {
 
 		m := NewTestMixin(t)
 		m.In = bytes.NewReader(b)
-		err = m.Build()
+		err = m.Build(context.Background())
 		require.NoError(t, err)
 
 		wantOutput := fmt.Sprintf(dockerfileLines, "19.03.12")

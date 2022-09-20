@@ -1,13 +1,13 @@
-//go:generate packr2
 package docker
 
 import (
 	"bufio"
+	"context"
 	"fmt"
 	"io/ioutil"
 	"strings"
 
-	"get.porter.sh/porter/pkg/context" // We are not using go-yaml because of serialization problems with jsonschema, don't use this library elsewhere
+	"get.porter.sh/porter/pkg/runtime"
 	"github.com/gobuffalo/packr/v2"
 	"github.com/pkg/errors"
 )
@@ -15,7 +15,7 @@ import (
 const defaultDockerVersion = "20.10.7"
 
 type Mixin struct {
-	*context.Context
+	runtime.RuntimeConfig
 	//add whatever other context/state is needed here
 	schema        *packr.Box
 	DockerVersion string
@@ -24,7 +24,7 @@ type Mixin struct {
 // New docker mixin client, initialized with useful defaults.
 func New() *Mixin {
 	return &Mixin{
-		Context:       context.New(),
+		RuntimeConfig: runtime.NewConfig(),
 		schema:        packr.New("schema", "./schema"),
 		DockerVersion: defaultDockerVersion,
 	}
@@ -39,8 +39,8 @@ func (m *Mixin) getPayloadData() ([]byte, error) {
 	return data, nil
 }
 
-func (m *Mixin) getOutput(outputName string) ([]byte, error) {
-	cmd := m.NewCommand("docker", "output", outputName)
+func (m *Mixin) getOutput(ctx context.Context, outputName string) ([]byte, error) {
+	cmd := m.NewCommand(ctx, "docker", "output", outputName)
 	cmd.Stderr = m.Err
 
 	out, err := cmd.Output()
@@ -52,9 +52,9 @@ func (m *Mixin) getOutput(outputName string) ([]byte, error) {
 	return out, nil
 }
 
-func (m *Mixin) handleOutputs(outputs []Output) error {
+func (m *Mixin) handleOutputs(ctx context.Context, outputs []Output) error {
 	for _, output := range outputs {
-		bytes, err := m.getOutput(output.Name)
+		bytes, err := m.getOutput(ctx, output.Name)
 		if err != nil {
 			return err
 		}
