@@ -2,6 +2,7 @@ package docker
 
 import (
 	"bytes"
+	"context"
 	"io/ioutil"
 	"path"
 	"testing"
@@ -48,7 +49,7 @@ func TestMixin_Execute(t *testing.T) {
 
 			m.In = bytes.NewBuffer(mixinInputB)
 
-			err = m.Execute()
+			err = m.Execute(context.Background())
 			require.NoError(t, err, "execute failed")
 
 			if tc.wantOutput == "" {

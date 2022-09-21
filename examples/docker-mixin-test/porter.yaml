@@ -1,7 +1,8 @@
+schemaVersion: 1.0.0
 name: whalesay
-version: 0.1.1
+version: 0.2.0
 description: "An example bundle that uses docker through the magic of whalespeak"
-tag: gmadhok/porter-hello/whalesay-mixin:v0.1.1
+registry: localhost:5000/docker-mixin-test
 
 required:
   - docker
