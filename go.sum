@@ -86,8 +86,8 @@ dmitri.shuralyov.com/gpu/mtl v0.0.0-20190408044501-666a987793e9/go.mod h1:H6x//7
 get.porter.sh/magefiles v0.3.0/go.mod h1:lwDECEEivbBHACLImnDEhwlr8g3E4xZR1W0DO8FOGa8=
 get.porter.sh/magefiles v0.3.2 h1:RDJini5LBQ8pYnc0r8M6cX2Pk+CPsCtyFwO3fy8Jb5g=
 get.porter.sh/magefiles v0.3.2/go.mod h1:w8ikniAFHO7AVvWayyWF7ViHoh4tNKwTxtKpO1FyGkU=
-get.porter.sh/porter v1.0.0-rc.1.0.20220919191751-edd731c0f07b h1:K10D4HtYyBuzAcw5MfVt6ZYbfie4bksm+iTFV7ooYOs=
-get.porter.sh/porter v1.0.0-rc.1.0.20220919191751-edd731c0f07b/go.mod h1:ZDh+OB2lJJL5aA7zBLhWRE9m9DhRxH0iVW88OoifL0c=
+get.porter.sh/porter v1.0.0-rc.2 h1:xclJNxXqlGaozFnSb82JM+B5I7cnJHY3q/W7w+FDONE=
+get.porter.sh/porter v1.0.0-rc.2/go.mod h1:EGPOxhMu44dRnwKdcedUtbMaFBrFrYzG1ybnHVYTrDs=
 git.apache.org/thrift.git v0.0.0-20180902110319-2566ecd5d999/go.mod h1:fPE2ZNJGynbRyZ4dJvy6G277gSllfV2HJqblrnkyeyg=
 git.apache.org/thrift.git v0.12.0/go.mod h1:fPE2ZNJGynbRyZ4dJvy6G277gSllfV2HJqblrnkyeyg=
 github.com/AdaLogics/go-fuzz-headers v0.0.0-20210715213245-6c3934b029d8/go.mod h1:CzsSbkDixRphAF5hS6wbMKq0eI6ccJRb7/A0M6JBnwg=

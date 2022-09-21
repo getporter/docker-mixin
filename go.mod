@@ -13,7 +13,7 @@ replace (
 
 require (
 	get.porter.sh/magefiles v0.3.2
-	get.porter.sh/porter v1.0.0-rc.1.0.20220919191751-edd731c0f07b
+	get.porter.sh/porter v1.0.0-rc.2
 	github.com/ghodss/yaml v1.0.0
 	github.com/gobuffalo/packr/v2 v2.8.1
 	github.com/pkg/errors v0.9.1
