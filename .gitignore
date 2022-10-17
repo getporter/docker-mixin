@@ -1,6 +1,5 @@
 bin
 .cnab
-*-packr.go
 /docker
 /docker.exe
 /build/git_askpass.sh

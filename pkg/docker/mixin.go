@@ -8,7 +8,6 @@ import (
 	"strings"
 
 	"get.porter.sh/porter/pkg/runtime"
-	"github.com/gobuffalo/packr/v2"
 	"github.com/pkg/errors"
 )
 
@@ -17,7 +16,6 @@ const defaultDockerVersion = "20.10.7"
 type Mixin struct {
 	runtime.RuntimeConfig
 	//add whatever other context/state is needed here
-	schema        *packr.Box
 	DockerVersion string
 }
 
@@ -25,7 +23,6 @@ type Mixin struct {
 func New() *Mixin {
 	return &Mixin{
 		RuntimeConfig: runtime.NewConfig(),
-		schema:        packr.New("schema", "./schema"),
 		DockerVersion: defaultDockerVersion,
 	}
 }
