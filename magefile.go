@@ -3,6 +3,7 @@
 package main
 
 import (
+	"get.porter.sh/magefiles/git"
 	"get.porter.sh/magefiles/mixins"
 )
 
@@ -55,4 +56,10 @@ func Install() {
 // Remove generated build files
 func Clean() {
 	magefile.Clean()
+}
+
+// SetupDCO configures your git repository to automatically sign your commits
+// to comply with our DCO
+func SetupDCO() error {
+	return git.SetupDCO()
 }
