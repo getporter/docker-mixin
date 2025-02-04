@@ -1,7 +1,8 @@
 module get.porter.sh/mixin/docker
 
-go 1.21
-toolchain go1.23.5
+go 1.23
+
+toolchain go1.23.3
 
 replace (
 	// These are replace directives copied from porter
